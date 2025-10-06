@@ -20,5 +20,5 @@ Usage
 
 
 Overview  
-![image alt](<img width="1915" height="1022" alt="image" src="https://github.com/user-attachments/assets/59c34f1e-0d0d-4df3-aa2c-94e03dd984a3" />
+![image alt](Sampleimg.png
 )
