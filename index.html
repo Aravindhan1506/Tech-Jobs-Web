@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>DevJobs - Tech Job Listing Board</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-code me-2"></i>DevJobs
+            </a>
+            
+            <!-- Search Bar -->
+            <div class="d-flex flex-grow-1 mx-4">
+                <div class="input-group search-container">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" class="form-control border-start-0" placeholder="Search jobs, companies, or skills..." id="mainSearch">
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="navbar-nav flex-row">
+                <a class="nav-link me-3" href="#"><i class="fas fa-plus-circle me-1"></i>Post a Job</a>
+                <a class="nav-link" href="#"><i class="fas fa-user me-1"></i>Login</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <aside class="col-lg-3 col-md-4 bg-light sidebar p-4">
+                <div class="filter-section">
+                    <h5 class="filter-title mb-3">
+                        <i class="fas fa-filter me-2"></i>Filters
+                    </h5>
+                    
+                    <!-- Job Role Filter -->
+                    <div class="filter-group mb-4">
+                        <h6 class="filter-subtitle">Job Role</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="frontend" id="frontend">
+                                <label class="form-check-label" for="frontend">Frontend Developer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="backend" id="backend">
+                                <label class="form-check-label" for="backend">Backend Developer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="fullstack" id="fullstack">
+                                <label class="form-check-label" for="fullstack">Full Stack Developer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="devops" id="devops">
+                                <label class="form-check-label" for="devops">DevOps Engineer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="mobile" id="mobile">
+                                <label class="form-check-label" for="mobile">Mobile Developer</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Filter -->
+                    <div class="filter-group mb-4">
+                        <h6 class="filter-subtitle">Tech Stack</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="javascript" id="javascript">
+                                <label class="form-check-label" for="javascript">JavaScript</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="react" id="react">
+                                <label class="form-check-label" for="react">React</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="nodejs" id="nodejs">
+                                <label class="form-check-label" for="nodejs">Node.js</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="python" id="python">
+                                <label class="form-check-label" for="python">Python</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="java" id="java">
+                                <label class="form-check-label" for="java">Java</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Filter -->
+                    <div class="filter-group mb-4">
+                        <h6 class="filter-subtitle">Location</h6>
+                        <select class="form-select" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="remote">Remote</option>
+                            <option value="san-francisco">San Francisco</option>
+                            <option value="new-york">New York</option>
+                            <option value="london">London</option>
+                            <option value="berlin">Berlin</option>
+                            <option value="toronto">Toronto</option>
+                        </select>
+                    </div>
+
+                    <!-- Experience Level Filter -->
+                    <div class="filter-group mb-4">
+                        <h6 class="filter-subtitle">Experience Level</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experience" value="entry" id="entry">
+                                <label class="form-check-label" for="entry">Entry Level (0-2 years)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experience" value="mid" id="mid">
+                                <label class="form-check-label" for="mid">Mid Level (2-5 years)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experience" value="senior" id="senior">
+                                <label class="form-check-label" for="senior">Senior Level (5+ years)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters Button -->
+                    <button class="btn btn-outline-secondary w-100" id="clearFilters">
+                        <i class="fas fa-times me-2"></i>Clear All Filters
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="col-lg-9 col-md-8 p-4">
+                <!-- Results Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h4 class="mb-1">Available Tech Jobs</h4>
+                        <p class="text-muted mb-0" id="jobCount">Showing 12 jobs</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label for="sortBy" class="form-label me-2 mb-0">Sort by:</label>
+                        <select class="form-select" id="sortBy" style="width: auto;">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="salary">Salary</option>
+                            <option value="company">Company</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Job Cards Grid -->
+                <section class="job-grid" id="jobGrid">
+                    <!-- Job Card 1 -->
+                    <div class="job-card" data-role="frontend" data-tech="javascript,react" data-location="san-francisco" data-experience="mid">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">Senior Frontend Developer</h5>
+                                <p class="company-name">Google</p>
+                                <p class="job-location">
+                                    <i class="fas fa-map-marker-alt me-1"></i>San Francisco, CA
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                $120k - $160k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Join our team to build next-generation web applications using React and modern JavaScript frameworks.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 2 -->
+                    <div class="job-card" data-role="backend" data-tech="nodejs,python" data-location="remote" data-experience="senior">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">Backend Engineer</h5>
+                                <p class="company-name">Microsoft</p>
+                                <p class="job-location">
+                                    <i class="fas fa-globe me-1"></i>Remote
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                $130k - $180k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Build scalable backend services and APIs using Node.js and cloud technologies.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 3 -->
+                    <div class="job-card" data-role="fullstack" data-tech="javascript,react,nodejs" data-location="new-york" data-experience="mid">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">Full Stack Developer</h5>
+                                <p class="company-name">Apple</p>
+                                <p class="job-location">
+                                    <i class="fas fa-map-marker-alt me-1"></i>New York, NY
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                $110k - $150k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Develop end-to-end solutions for our consumer applications using modern web technologies.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 4 -->
+                    <div class="job-card" data-role="devops" data-tech="python,java" data-location="london" data-experience="senior">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-amazon"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">DevOps Engineer</h5>
+                                <p class="company-name">Amazon</p>
+                                <p class="job-location">
+                                    <i class="fas fa-map-marker-alt me-1"></i>London, UK
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                £80k - £120k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Manage cloud infrastructure and CI/CD pipelines for large-scale applications.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 5 -->
+                    <div class="job-card" data-role="mobile" data-tech="javascript" data-location="berlin" data-experience="entry">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-spotify"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">Mobile Developer</h5>
+                                <p class="company-name">Spotify</p>
+                                <p class="job-location">
+                                    <i class="fas fa-map-marker-alt me-1"></i>Berlin, Germany
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                €60k - €80k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Build mobile applications for iOS and Android using React Native and modern frameworks.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">iOS</span>
+                            <span class="tech-tag">Android</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 6 -->
+                    <div class="job-card" data-role="frontend" data-tech="javascript,react" data-location="toronto" data-experience="entry">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <i class="fab fa-shopify"></i>
+                            </div>
+                            <div class="job-info">
+                                <h5 class="job-title">Junior Frontend Developer</h5>
+                                <p class="company-name">Shopify</p>
+                                <p class="job-location">
+                                    <i class="fas fa-map-marker-alt me-1"></i>Toronto, Canada
+                                </p>
+                            </div>
+                            <div class="job-salary">
+                                CAD 70k - 90k
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>Join our frontend team to create beautiful and responsive user interfaces for e-commerce.</p>
+                        </div>
+                        <div class="job-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <button class="btn btn-success apply-btn">
+                                <i class="fas fa-paper-plane me-1"></i>Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary btn-lg" id="loadMore">
+                        <i class="fas fa-plus me-2"></i>Load More Jobs
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
