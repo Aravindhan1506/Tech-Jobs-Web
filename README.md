@@ -13,8 +13,11 @@ Sorting Options: Users can sort job listings by various criteria including newes
 
 Technology Stack
 HTML: For structuring the content.
+
 CSS: For styling the interface.
+
 Bootstrap: For responsive design and layout.
+
 JavaScript: For interactivity and dynamic content handling.
 Usage
 
